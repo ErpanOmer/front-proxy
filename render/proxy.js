@@ -4,7 +4,7 @@ const httpProxy = require('http-proxy')
 let localServer = null
 let proxyServer = null
 
-export function connect (target) {
+export function connect (proxyServerURL, targetServerURL) {
   return new Promise(async (resolve, reject) => {
     // 创建服务器之前，先关闭
     await close()
@@ -20,12 +20,12 @@ export function connect (target) {
         // 执行反向代理
         proxyServer.web(req, res, {
           // 目标地址
-          target
+          target: targetServerURL.href
         })
       })
-      .listen(3000, function (v) {
+      .listen(Number(proxyServerURL.port), proxyServerURL.hostname, function (v) {
         const { port } = localServer.address()
-        resolve([`http://localhost:${port}`, target])
+        resolve([proxyServerURL.href, targetServerURL.href])
         console.log('server is running at %d', port)
       }).on('error', e => {
         reject(new Error(e.message))

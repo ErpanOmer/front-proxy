@@ -22,8 +22,9 @@ function App() {
 
     setStatus(() => initialStatus.connecting)
     try {
-      const url = validateURL(values.targetServerURL)
-      const [proxyServerURL, targetServerURL] = await connect(url)
+      let proxyServerURL = validateURL(values.proxyServerURL)
+      let targetServerURL = validateURL(values.targetServerURL)
+      await connect(proxyServerURL, targetServerURL)
 
       setValues({
         ...values,
@@ -53,13 +54,15 @@ function App() {
       createElement(Input, {
         value: values.proxyServerURL,
         addonBefore: 'Proxy Server',
-        readOnly: true,
+        disabled: status.loading,
+        readOnly: status.tipsType === 'success',
         onChange: (e) => onChange('proxyServerURL', e.target.value)
       }),
       createElement(Input, {
         value: values.targetServerURL,
         addonBefore: 'Target Server',
         placeholder: 'Pleace Enter...',
+        disabled: status.loading,
         readOnly: status.tipsType === 'success',
         onChange: (e) => onChange('targetServerURL', e.target.value)
       }),
@@ -70,7 +73,7 @@ function App() {
         createElement(
           Checkbox, {
           checked: values.remember,
-          disabled: status.tipsType === 'success',
+          disabled: status.loading,
           onChange: (e) => onChange('remember', e.target.checked)
         },
           'Save'

@@ -9,7 +9,7 @@ export const validateURL = v => {
       throw new Error('Hostname error')
     }
 
-    return url.href
+    return url
   } catch (error) {
     throw new Error(error.message)
   }
