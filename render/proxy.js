@@ -27,6 +27,8 @@ export function connect (target) {
         const { port } = localServer.address()
         resolve([`http://localhost:${port}`, target])
         console.log('server is running at %d', port)
+      }).on('error', e => {
+        reject(new Error(e.message))
       })
   })
 }

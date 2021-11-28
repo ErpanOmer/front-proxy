@@ -6,7 +6,7 @@ app.on('ready', () => {
     height: 300,
     // x: 0,
     // y: 0,
-    // center: true,
+    center: process.env.NODE_ENV !== 'development',
     resizable: false,
     show: false,
     title: 'Proxy Tool',
