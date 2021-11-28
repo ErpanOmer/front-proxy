@@ -1,0 +1,36 @@
+{
+  "name": "proxy-tool",
+  "version": "1.0.0",
+  "description": "electron proxy tool",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon --exec npm run app",
+    "app": "electron main.js",
+    "build": "electron-builder"
+  },
+  "author": "ErpanOmer",
+  "license": "ISC",
+  "devDependencies": {
+    "@material-ui/styles": "^4.11.4",
+    "electron": "^16.0.2",
+    "electron-builder": "^22.14.5",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "antd": "^4.17.2",
+    "prettier": "^2.5.0"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  },
+  "build": {
+    "directories": {
+      "output": "package"
+    }
+  }
+}

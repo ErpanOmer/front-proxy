@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  min-height: 100%;
+  font-size: 12px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10%;
+  align-items: center;
+}
+
+#app .ant-input-group-addon {
+  font-size: 12px;
+}
+
+#app .checkbox {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+#app .checkbox .ant-checkbox-wrapper {
+  font-size: 12px;
+}
+
+#app .buttons {
+  display: flex;
+  width: 100%;
+}
+
+#app .buttons .ant-btn-sm {
+  font-size: 12px;
+}
+
+#app .tips {
+  display: flex;
+  align-items: inherit;
+}
+
+#app .tips .ant-typography-success {
+  color: #177ddc;
+}
+
+#app .tips .ant-badge-status-dot {
+  width: 10px;
+  height: 10px;
+}

@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "render/*",
+    "main.js"
+  ],
+  "verbose": true,
+  "env": {
+    "ELECTRON_DISABLE_SECURITY_WARNINGS": true,
+    "NODE_ENV": "development"
+  }
+}
