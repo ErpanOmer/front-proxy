@@ -20,13 +20,13 @@ export function connect (proxyServerURL, targetServerURL) {
         // 执行反向代理
         proxyServer.web(req, res, {
           // 目标地址
-          target: targetServerURL.href
+          target: targetServerURL.origin
         })
       })
-      .listen(Number(proxyServerURL.port), proxyServerURL.hostname, function (v) {
-        const { port } = localServer.address()
-        resolve([proxyServerURL.href, targetServerURL.href])
-        console.log('server is running at %d', port)
+      .listen(Number(proxyServerURL.port || 80), function (v) {
+        const { port, address } = localServer.address()
+        resolve([`http://localhost:${port}`, targetServerURL.origin])
+        console.log(`server is running at ${address}:${port}`)
       }).on('error', e => {
         reject(new Error(e.message))
       })
@@ -34,7 +34,7 @@ export function connect (proxyServerURL, targetServerURL) {
 }
 
 export function close () {
-  if (!proxyServer || !localServer) {
+  if (!localServer || !proxyServer) {
     return
   }
 

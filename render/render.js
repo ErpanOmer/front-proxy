@@ -22,9 +22,10 @@ function App() {
 
     setStatus(() => initialStatus.connecting)
     try {
-      let proxyServerURL = validateURL(values.proxyServerURL)
-      let targetServerURL = validateURL(values.targetServerURL)
-      await connect(proxyServerURL, targetServerURL)
+      const [proxyServerURL, targetServerURL] = await connect(
+        validateURL(values.proxyServerURL, true),
+        validateURL(values.targetServerURL)
+      )
 
       setValues({
         ...values,
