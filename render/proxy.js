@@ -39,10 +39,14 @@ export function close () {
   }
 
   return new Promise(resolve => {
-    // 先关闭反向代理服务器
-    proxyServer.close()
-    // 后关闭本地服务器
-    localServer.close()
-    localServer.on('close', resolve)
+    if (localServer.listening || proxyServer.listening) {
+          // 先关闭反向代理服务器
+      proxyServer.close()
+      // 后关闭本地服务器
+      localServer.close()
+      return localServer.on('close', resolve)
+    }
+
+    resolve()
   })
 }

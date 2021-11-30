@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec npm run app",
     "app": "electron main.js",
-    "build": "electron-builder"
+    "build": "electron-builder --config builder.js"
   },
   "author": "ErpanOmer",
   "license": "ISC",
@@ -23,10 +23,5 @@
   },
   "dependencies": {
     "http-proxy": "^1.18.1"
-  },
-  "build": {
-    "directories": {
-      "output": "package"
-    }
   }
 }
