@@ -16,7 +16,7 @@ function App() {
     if (status.tipsType === 'success') {
       setStatus(() => initialStatus.disconnecting)
       // 关闭代理服务器
-      await close()
+      close()
       return setTimeout(setStatus, 1500, () => initialStatus.disconnect)
     }
 

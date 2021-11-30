@@ -4,10 +4,10 @@ const httpProxy = require('http-proxy')
 let localServer = null
 let proxyServer = null
 
-export function connect (proxyServerURL, targetServerURL) {
+export function connect(proxyServerURL, targetServerURL) {
   return new Promise(async (resolve, reject) => {
     // 创建服务器之前，先关闭
-    await close()
+    close()
     // 创建反向代理服务
     proxyServer = httpProxy.createProxyServer()
     // 监听错误事件
@@ -24,7 +24,10 @@ export function connect (proxyServerURL, targetServerURL) {
         })
       })
       .listen(Number(proxyServerURL.port || 80), function (v) {
-        const { port, address } = localServer.address()
+        const {
+          port,
+          address
+        } = localServer.address()
         resolve([`http://localhost:${port}`, targetServerURL.origin])
         console.log(`server is running at ${address}:${port}`)
       }).on('error', e => {
@@ -33,20 +36,9 @@ export function connect (proxyServerURL, targetServerURL) {
   })
 }
 
-export function close () {
-  if (!localServer || !proxyServer) {
-    return
-  }
-
-  return new Promise(resolve => {
-    if (localServer.listening || proxyServer.listening) {
-          // 先关闭反向代理服务器
-      proxyServer.close()
-      // 后关闭本地服务器
-      localServer.close()
-      return localServer.on('close', resolve)
-    }
-
-    resolve()
-  })
+export function close() {
+  // 先关闭反向代理服务器
+  localServer && localServer.listening && localServer.close()
+  // 后关闭本地服务器
+  proxyServer && proxyServer.listening && proxyServer.close()
 }
