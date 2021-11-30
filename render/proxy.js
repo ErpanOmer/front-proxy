@@ -38,7 +38,7 @@ export function connect(proxyServerURL, targetServerURL) {
 
 export function close() {
   // 先关闭反向代理服务器
-  localServer && localServer.listening && localServer.close()
-  // 后关闭本地服务器
   proxyServer && proxyServer.listening && proxyServer.close()
+  // 后关闭本地服务器
+  localServer && localServer.listening && localServer.close()
 }
