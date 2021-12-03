@@ -9,8 +9,7 @@ module.exports = {
     output: 'package'
   },
   win: {
-    target: 'nsis',
-    arch: ['x64']
+    target: 'nsis'
     // icon: 'xxx/icon.ico' //图标路径
   }
   // nsis: {
