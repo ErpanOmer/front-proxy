@@ -3,9 +3,9 @@
 
 ## 背景
 
-最近在公司前端项目中发现，每当拉取主分支代码时（只能pull,不能push），我本地 ProxyTable 代码总是被修改，甚至会造成冲突。
+最近在公司前端项目中发现，每当拉取主分支代码时（只能pull,不能push），我本地 WDS(webpack-dev-server)  配置总是被修改，甚至会造成冲突。
 
-原因：假设前端项目n个人去开发，每个人本地的 ProxyTable 对应着n + n个不同的后端服务, 等到团队发布新版本，Leader强制合并这部分代码(不影响生产环境)，让我们再拉取主分支时，ProxyTable 又被覆盖了。
+原因：假设前端项目n个人去开发，每个人本地的 WDS 对应着n + n个不同的后端服务, 等到团队发布新版本，Leader强制合并这部分代码(不影响生产环境)，让我们再拉取主分支时，WDS 又被覆盖了。
 
 这时候我的心情时这样的
 
@@ -37,10 +37,53 @@ SwitchHosts 也是非常方便的工具，可以解决上述的痛点。但缺�
   |Linux x32    |尽情期待                                                                                                      |
   |Linux x64    |尽情期待                                                                                                      |
 
-## 使用
+## 使用方法
+
+假设：前端项目 webpack-dev-server 配置是这样的
+
+```js
+module.exports = {
+  devServer: {
+  port: 3000,
+  proxy: {
+      '/foo': {
+        target: 'http://www.foo.com'
+      }
+    }
+  }
+}
+```
+
+因为我们每次被冲突的地方是proxy部分，所以我们把它改造成：
+
+```js
+// Proxy Tool 代理服务器地址
+const proxyServer = 'http://localhost:5000'
+
+module.exports = {
+  devServer: {
+  port: 3000,
+  proxy: {
+      '/foo': {
+        target: proxyServer
+      }
+    }
+  }
+}
+
+```
+
+这时候 webpack-dev-server 就不存在代码冲突问题了，因为每个人的配置是一样的。
+接下打开工具，填入服务器地址，并启动服务器即可。
+
+  |      Proxy Server   |   Target Server  |
+  |:-------------------:|:----------------:|
+  |<http://localhost:5000>|<http://www.foo.com>|
+
+###### tips: 目前 Proxy Tool 只支持单个服务器的代理, 后期迭代会支持多个目标服务器
 
 ## 技术实现
 
     - electron + react
     - 原生 ES Module 编写
-    - 不使用任何 Webpack, Babel 等编译工具
+    - 不使用 Webpack, Babel 等编译工具
