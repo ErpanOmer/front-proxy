@@ -25,3 +25,21 @@ SwitchHosts 也是非常方便的工具，可以解决上述的痛点。但缺�
 ##### 为什么不是其它更优秀的工具?
 
 懒得找！哪怕找到了，也不一定适合我的要求。
+
+
+##下载
+
+  |     平台    |                                              下载地址                                                        |
+  |:-----------:|:-----------------------------------------------------------------------------------------------------------:|
+  |Window x32   |尽情期待                                                                                                      |
+  |Window x64   |[Window x64](https://balqish-oss-service.oss-cn-shenzhen.aliyuncs.com/proxy-tool/Proxy%20Tool_x64_v1.0.0.exe)|
+  |MAC          |尽情期待                                                                                                      |
+  |Linux x32    |尽情期待                                                                                                      |
+  |Linux x64    |尽情期待                                                                                                      |
+
+##使用
+
+##技术实现
+    - electron + react
+    - 原生 ES Module 编写
+    - 不使用任何 Webpack, Babel 等编译工具
