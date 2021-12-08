@@ -1,5 +1,5 @@
 <h1 align="center">Proxy Tool</h1>
-<p align="center"><img src="./y.png" width="400"/></p>
+<p align="center"><img src="./images/y.png" width="400"/></p>
 
 ## 背景
 
@@ -8,7 +8,8 @@
 原因：假设前端项目n个人去开发，每个人本地的 ProxyTable 对应着n + n个不同的后端服务, 等到团队发布新版本，Leader强制合并这部分代码(不影响生产环境)，让我们再拉取主分支时，ProxyTable 又被覆盖了。
 
 这时候我的心情时这样的
-<p align="center"><img src="./x.png" width="300"/></p>
+
+<p align="center"><img src="./images/x.jpg" width="300"/></p>
 
 ## 寻找方案
 
