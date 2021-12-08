@@ -44,8 +44,8 @@ SwitchHosts 也是非常方便的工具，可以解决上述的痛点。但缺�
 ```js
 module.exports = {
   devServer: {
-  port: 3000,
-  proxy: {
+    port: 3000,
+    proxy: {
       '/foo': {
         target: 'http://www.foo.com'
       }
@@ -62,8 +62,8 @@ const proxyServer = 'http://localhost:5000'
 
 module.exports = {
   devServer: {
-  port: 3000,
-  proxy: {
+    port: 3000,
+    proxy: {
       '/foo': {
         target: proxyServer
       }
@@ -74,16 +74,16 @@ module.exports = {
 ```
 
 这时候 webpack-dev-server 就不存在代码冲突问题了，因为每个人的配置是一样的。
-接下打开工具，填入服务器地址，并启动服务器即可。
+接下来打开工具，填入服务器地址，并启动即可。
 
-  |      Proxy Server   |   Target Server  |
-  |:-------------------:|:----------------:|
+  |        Proxy Server   |     Target Server  |
+  |:---------------------:|:------------------:|
   |<http://localhost:5000>|<http://www.foo.com>|
 
-###### tips: 目前 Proxy Tool 只支持单个服务器的代理, 后期迭代会支持多个目标服务器
+###### tips: 目前 Proxy Tool 只支持单个服务器的代理, 后期迭代会支持多个目标服务器，多个匹配规则
 
 ## 技术实现
 
-    - electron + react
-    - 原生 ES Module 编写
-    - 不使用 Webpack, Babel 等编译工具
+  - electron + react
+  - 原生 ES Module 编写
+  - 不使用 Webpack, Babel 等编译工具6
