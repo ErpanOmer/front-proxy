@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('path')
+// 是否是开发环境
+const isDev = process.env.NODE_ENV === 'development'
 
 app.on('ready', () => {
   const window = new BrowserWindow({
@@ -6,7 +9,7 @@ app.on('ready', () => {
     height: 300,
     // x: 0,
     // y: 0,
-    center: process.env.NODE_ENV !== 'development',
+    center: !isDev,
     resizable: false,
     show: false,
     title: 'Proxy Tool',
@@ -15,12 +18,12 @@ app.on('ready', () => {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      devTools: process.env.NODE_ENV === 'development',
+      devTools: isDev,
       webSecurity: false
     }
   })
 
-  window.loadURL(`file://${__dirname}/render/render.html`)
+  window.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '/index.html')}`)
   window.openDevTools()
   window.once('ready-to-show', () => {
     window.show()

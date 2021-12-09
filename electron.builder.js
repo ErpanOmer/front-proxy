@@ -1,3 +1,38 @@
+/* eslint-disable no-template-curly-in-string */
+const { removeSync, moveSync, copySync, ensureDirSync } = require('fs-extra')
+const path = require('path')
+
+//  构建之前做的事情
+const beforeBuild = () => {
+  return new Promise((resolve) => {
+    // 清空
+    removeSync('package')
+    removeSync('electron-build')
+    // 复制
+    copySync('main.js', 'build/electron.js')
+    // 移动
+    moveSync('build', 'app/build', { overwrite: true })
+    resolve(true)
+  })
+}
+
+const afterAllArtifactBuild = ({ outDir, ...other }) => {
+  console.log(other)
+  // ensureDirSync('package')
+  // 复制
+  copySync(outDir, 'package', {
+    filter: (src, dest) => {
+      if (src.includes('win-unpacked')) {
+        return false
+      }
+      return true
+    }
+  })
+  setTimeout(() => {
+    copySync(path.join(outDir, 'latest.yml'), 'package/latest.yml')
+  }, 500)
+}
+
 module.exports = {
   appId: 'com.balqish.www',
   productName: 'Proxy Tool',
@@ -5,9 +40,14 @@ module.exports = {
   artifactName: '${productName}_${arch}_v${version}.${ext}',
   buildVersion: '1.0.0',
   compression: 'store',
+  asar: false,
   directories: {
-    output: 'package'
+    output: 'electron-build',
+    buildResources: 'render'
   },
+  beforeBuild,
+  afterAllArtifactBuild,
+  // files: ['**'],
   win: {
     target: 'nsis'
     // icon: 'xxx/icon.ico' //图标路径

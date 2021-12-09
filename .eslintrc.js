@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 module.exports = {
   env: {
     browser: true,
@@ -8,6 +7,7 @@ module.exports = {
   },
   extends: [
     // 'airbnb-base',
+    'react-app',
     'plugin:prettier/recommended' // 添加 prettier 插件
   ],
   parserOptions: {

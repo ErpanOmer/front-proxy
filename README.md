@@ -54,7 +54,7 @@ module.exports = {
 }
 ```
 
-因为我们每次被冲突的地方是proxy部分，所以我们把它改造成：
+我们每次被冲突的部分是 proxy 配置项，所以把它改造成：
 
 ```js
 // Proxy Tool 代理服务器地址
@@ -74,6 +74,7 @@ module.exports = {
 ```
 
 这时候 webpack-dev-server 就不存在代码冲突问题了，因为每个人的配置是一样的。
+<br>
 接下来打开工具，填入服务器地址，并启动即可。
 
   |        Proxy Server   |     Target Server  |
@@ -86,4 +87,4 @@ module.exports = {
 
   - electron + react
   - 原生 ES Module 编写
-  - 不使用 Webpack, Babel 等编译工具6
+  - 不使用 Webpack, Babel 等编译工具

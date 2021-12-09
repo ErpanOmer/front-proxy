@@ -1,0 +1,10 @@
+{
+  "name": "proxy-tool",
+  "version": "1.0.0",
+  "description": "electron proxy tool",
+  "author": "ErpanOmer",
+  "license": "ISC",
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}
