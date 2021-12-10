@@ -1,0 +1,28 @@
+osx_image: xcode11.3
+
+dist: trusty
+sudo: false
+
+language: node_js
+node_js: "16"
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+os:
+  - osx
+
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  - $HOME/.npm/_prebuilds
+
+before_install:
+  - npm i -g npm@version-number
+
+script:
+  - npm run build
