@@ -1,10 +1,11 @@
 {
-  "name": "proxy-tool",
+  "name": "front-proxy",
   "version": "1.0.0",
-  "description": "electron proxy tool",
+  "description": "electron front proxy",
   "author": "ErpanOmer",
   "license": "ISC",
   "dependencies": {
-    "http-proxy": "^1.18.1"
+    "http-proxy": "^1.18.1",
+    "compressing": "^1.5.1"
   }
 }

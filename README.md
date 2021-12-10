@@ -1,4 +1,4 @@
-<h1 align="center">Proxy Tool</h1>
+<h1 align="center">Front Proxy</h1>
 <p align="center"><img src="./images/y.png" width="400"/></p>
 
 ## 背景
@@ -57,7 +57,7 @@ module.exports = {
 我们每次被冲突的部分是 proxy 配置项，所以把它改造成：
 
 ```js
-// Proxy Tool 代理服务器地址
+// Front Proxy 代理服务器地址
 const proxyServer = 'http://localhost:5000'
 
 module.exports = {
@@ -81,7 +81,7 @@ module.exports = {
   |:---------------------:|:------------------:|
   |<http://localhost:5000>|<http://www.foo.com>|
 
-###### tips: 目前 Proxy Tool 只支持单个服务器的代理, 后期迭代会支持多个目标服务器，多个匹配规则
+###### tips: 目前 Front Proxy 只支持单个服务器的代理, 后期迭代会支持多个目标服务器，多个匹配规则
 
 ## 技术实现
 

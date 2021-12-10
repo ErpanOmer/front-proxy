@@ -12,13 +12,14 @@ app.on('ready', () => {
     center: !isDev,
     resizable: false,
     show: false,
-    title: 'Proxy Tool',
+    icon: isDev ? 'public/icon.ico' : path.join(__dirname, '/icon.ico'),
+    title: 'Front Proxy',
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      devTools: isDev,
+      devTools: !isDev,
       webSecurity: false
     }
   })
