@@ -6,6 +6,7 @@
   "license": "ISC",
   "dependencies": {
     "http-proxy": "^1.18.1",
-    "compressing": "^1.5.1"
+    "compressing": "^1.5.1",
+    "semver": "^7.3.5"
   }
 }

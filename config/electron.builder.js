@@ -1,13 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
-const { copySync, moveSync, emptydirSync } = require('fs-extra')
-const deploy= require('./deploy.js')
+const { moveSync, emptydirSync } = require('fs-extra')
+const path = require('path')
+const deploy = require('./deploy.js')
 
 // before build
 // clean
 emptydirSync('package')
 emptydirSync('electron-build')
-// copy
-copySync('main.js', 'build/electron.js')
 // move
 moveSync('build', 'app/build', { overwrite: true })
 
@@ -23,6 +22,10 @@ module.exports = {
   artifactName: '${name}-${os}-${arch}.${ext}',
   compression: 'store',
   asar: false,
+  extraMetadata: {
+    main: 'electron/index.js'
+  },
+  files: ['**/*'],
   directories: {
     output: 'electron-build'
   },
@@ -31,10 +34,11 @@ module.exports = {
     target: [
       {
         target: 'nsis',
-        arch: [
-          'x64',
-          'ia32'
-        ]
+        arch: 'x64'
+      },
+      {
+        target: 'nsis',
+        arch: 'ia32'
       }
     ],
     icon: 'public/icon.ico',

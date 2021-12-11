@@ -10,7 +10,7 @@ const addCustomize = config => {
 module.exports = {
   webpack: override(
     addWebpackAlias({
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve('src')
     }),
     setWebpackTarget('electron-renderer'),
     addCustomize

@@ -4,25 +4,25 @@
   "description": "electron front proxy",
   "author": "ErpanOmer",
   "license": "ISC",
-  "config-overrides-path": "render.config.js",
-  "main": "main.js",
+  "config-overrides-path": "config/render.config.js",
+  "main": "app/electron/index.js",
   "scripts": {
-    "dev": "run-p dev:render wait-electron",
+    "dev": "env-cmd -f .env.development run-p dev:render wait-electron",
     "dev:render": "react-app-rewired start",
     "dev:main": "nodemon --exec npm run dev:electron",
     "dev:electron": "electron .",
-    "build": "run-s build:render build:electron",
+    "build": "env-cmd -f .env.production run-s build:render install-deps build:electron",
     "build:render": "react-app-rewired build",
-    "build:electron": "electron-builder --config electron.builder.js",
-    "wait-dev-server": "wait-on -c wait.js",
-    "wait-electron": "run-s wait-dev-server dev:main"
+    "build:electron": "electron-builder --config config/electron.builder.js",
+    "wait-dev-server": "wait-on -c config/wait.js",
+    "wait-electron": "run-s wait-dev-server dev:main",
+    "install-deps": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "D": "^1.0.0",
     "http-proxy": "^1.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -49,6 +49,8 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.0",
     "react-app-rewired": "^2.1.8",
+    "request": "^2.88.2",
+    "semver": "^7.3.5",
     "wait-on": "^6.0.0"
   },
   "browserslist": {

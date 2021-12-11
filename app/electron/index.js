@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const { checkUpgrade } = require('./upgrade.js')
 // 是否是开发环境
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -12,21 +13,23 @@ app.on('ready', () => {
     center: !isDev,
     resizable: false,
     show: false,
-    icon: isDev ? 'public/icon.ico' : path.join(__dirname, '/icon.ico'),
+    icon: isDev ? 'public/icon.ico': path.join(app.getAppPath(), 'build/icon.ico'),
     title: 'Front Proxy',
     autoHideMenuBar: true,
+    transparent: true,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-      devTools: !isDev,
+      devTools: isDev,
       webSecurity: false
     }
   })
 
-  window.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '/index.html')}`)
+  window.loadURL(isDev ? process.env.DEV_SERVER_URL : `file://${path.join(app.getAppPath(), 'build/index.html')}`)
   window.openDevTools()
   window.once('ready-to-show', () => {
     window.show()
+    setTimeout(checkUpgrade, 1000)
   })
 })
