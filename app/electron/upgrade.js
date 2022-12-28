@@ -1,6 +1,11 @@
 const https = require('https')
+const fs = require('fs')
+const electorn = require('electron')
 const semver = require('semver')
+const { tgz } = require('compressing')
 const { dialog } = require('electron')
+
+console.log(electorn);
 
 const bucketUrl = `https://balqish-oss-service.oss-cn-shenzhen.aliyuncs.com/front-proxy/${process.platform}/`
 
@@ -29,10 +34,20 @@ function getUpgradeJson(url) {
 
 function downloadUpgrade (url) {
   console.log(url)
+
+  // https.get(url, response => {
+  //   const stream = fs.createWriteStream('up.tgz')
+  //   response.on('data', v => stream.write(v))
+  //   response.on('end', () => {
+  //     tgz.uncompress('up.tgz', 'upo')
+  //   })
+  // })
 }
 
 async function checkUpgrade () {
   const json = await getUpgradeJson(bucketUrl + 'upgrade.json')
+
+  console.log(json)
 
   if (!json.version || !json.package) {
     return false

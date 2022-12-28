@@ -1,8 +1,13 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, dialog } = require('electron')
 const path = require('path')
 const { checkUpgrade } = require('./upgrade.js')
 // 是否是开发环境
 const isDev = process.env.NODE_ENV === 'development'
+
+dialog.showCertificateTrustDialog({
+  certificate: {},
+  message: 'xxxx'
+})
 
 app.on('ready', () => {
   const window = new BrowserWindow({
